@@ -17,6 +17,7 @@ import java.util.Date;
 public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
+
     public String generarToken(Usuario usuario){
         try {
             var algoritmo = Algorithm.HMAC256(secret);
@@ -31,7 +32,7 @@ public class TokenService {
     }
 
     private Instant fechaExpiracion() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusHours(24).toInstant(ZoneOffset.of("-03:00"));
     }
 
     public String getSubject(String tokenJWT){
