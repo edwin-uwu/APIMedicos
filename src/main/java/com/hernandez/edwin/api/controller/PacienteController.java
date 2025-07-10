@@ -1,6 +1,7 @@
 package com.hernandez.edwin.api.controller;
 
 import com.hernandez.edwin.api.domain.paciente.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RequestMapping("/pacientes")
 @RestController
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
 
     @Autowired

@@ -25,10 +25,13 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement( sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(rq -> {
-                    rq.requestMatchers(HttpMethod.POST,"/login").permitAll();
-                    rq.anyRequest().authenticated();
-                })
+                .authorizeHttpRequests((rq) ->
+                        rq.requestMatchers(HttpMethod.POST,"/login").permitAll()
+                                .requestMatchers("/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**")
+                                .permitAll()
+                                .anyRequest().
+                                authenticated()
+                )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

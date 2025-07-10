@@ -3,6 +3,7 @@ package com.hernandez.edwin.api.controller;
 import com.hernandez.edwin.api.domain.reserva.DetalleConsulta;
 import com.hernandez.edwin.api.domain.reserva.ReservaConsulta;
 import com.hernandez.edwin.api.domain.reserva.ReservaDeConsultas;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
     @Autowired
