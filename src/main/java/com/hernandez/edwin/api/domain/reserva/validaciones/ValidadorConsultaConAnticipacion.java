@@ -2,12 +2,13 @@ package com.hernandez.edwin.api.domain.reserva.validaciones;
 
 import com.hernandez.edwin.api.domain.ValidacionException;
 import com.hernandez.edwin.api.domain.reserva.ReservaConsulta;
+import org.springframework.stereotype.Component;
 
-import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class ValidacionConsultaConAnticipacion {
+@Component
+public class ValidadorConsultaConAnticipacion implements ValidadorDeConsultas{
     public void validar(ReservaConsulta datos){
         var fechaConsulta = datos.fecha();
         var ahora = LocalDateTime.now();

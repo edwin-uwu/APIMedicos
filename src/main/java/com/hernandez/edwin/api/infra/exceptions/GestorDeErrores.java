@@ -1,5 +1,6 @@
 package com.hernandez.edwin.api.infra.exceptions;
 
+import com.hernandez.edwin.api.domain.ValidacionException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -18,6 +19,10 @@ public class GestorDeErrores {
     public ResponseEntity gestionarError400(MethodArgumentNotValidException ex){
         var errores = ex.getFieldErrors();
         return ResponseEntity.badRequest().body(errores.stream().map(DatosErrorValidacion::new).toList());
+    }
+    @ExceptionHandler(ValidacionException.class)
+    public ResponseEntity gestionarErrorDeValidacion(ValidacionException ex){
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     public record DatosErrorValidacion(String campo, String mnsaje){

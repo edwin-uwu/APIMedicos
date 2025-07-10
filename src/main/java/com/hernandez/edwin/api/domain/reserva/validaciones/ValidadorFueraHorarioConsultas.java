@@ -2,10 +2,12 @@ package com.hernandez.edwin.api.domain.reserva.validaciones;
 
 import com.hernandez.edwin.api.domain.ValidacionException;
 import com.hernandez.edwin.api.domain.reserva.ReservaConsulta;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
-public class ValidacionFueraHorarioConsultas {
+@Component
+public class ValidadorFueraHorarioConsultas implements ValidadorDeConsultas{
     public void validar(ReservaConsulta datos){
         var fechaConsulta = datos.fecha();
         var domingo = fechaConsulta.getDayOfWeek().equals(DayOfWeek.SUNDAY);
